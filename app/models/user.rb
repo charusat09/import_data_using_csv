@@ -7,4 +7,8 @@ class User < ApplicationRecord
       user.save!
     end
   end
+
+  def self.filter(name=nil)
+    name ? where('name LIKE ?', "%#{name}%") : all
+  end
 end

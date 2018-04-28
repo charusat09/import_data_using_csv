@@ -5,25 +5,10 @@
 
 h1 Listing users
 
-table.table
-  thead
-    tr
-      th Name
-      th Date
-      th Number
-      th Description
-      th Created At
-      th
-  tbody
-    - @users.each do |user|
-      tr
-        td = user.name
-        td = user.date
-        td = user.number
-        td = user.description
-        td = user.created_at
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
+= form_tag users_path, :method => 'get', :id => "users_filter", remote: true, class: "form-inline" do
+  p
+    = text_field_tag :name, params[:name], class: "form-control"
+    = submit_tag "Search", :name => nil, class: "btn btn-default"
+  #users= render 'users'
 
 = link_to 'Import Data from CSV', new_user_path, class: "btn btn-default"

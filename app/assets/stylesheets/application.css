@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+ .pretty th .current {
+   padding-right: 20px;
+   background-repeat: no-repeat;
+   background-position: right center;
+ }
+
+ .pretty th .asc {
+   background-image: url("/images/sort-up.png");
+ }
+
+ .pretty th .desc {
+   background-image: url(/images/sort-down.png);
+ }

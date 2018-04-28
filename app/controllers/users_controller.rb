@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-
+  helper_method :sort_column, :sort_direction
+  
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.filter(params[:name]).order(sort_column + ' ' + sort_direction)
   end
 
   # POST /users/import
@@ -26,5 +27,15 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def sort_column
+    params[:sort] || "created_at"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
